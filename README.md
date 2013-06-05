@@ -318,7 +318,7 @@ Prevent people from accessing stuff on your server that they shouldn't.
     </IfModule>
 
 ## Changelog
-* 2/9/2013
+* v1.0 (February 9, 2013)
   * Initial release.
 
 ## License
