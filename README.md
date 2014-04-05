@@ -3,6 +3,23 @@ In Apache HTTP servers, `.htaccess` (hypertext access) is the configuration file
 
 This document includes a number of best practice server rules for making web pages fast and secure. Adapted from [HTML5 Boilerplate](http://html5boilerplate.com/).
 
+**In This Documentation**
+
+1. [How It Works](#how-it-works)
+2. [Server Settings](#server-settings)
+	1. [CORS-Enabled Images](#cors-enabled-images)
+	2. [Webfont Access](#webfont-access)
+	3. [MIME Types](#mime-types)
+	4. [GZIP Compression](#gzip-compression)
+	5. [Expires Headers](#expires-headers)
+	6. [Prevent Mobile Network Provider Modifications](#prevent-mobile-network-provider-modifications)
+	7. [ETag Removal](#etag-removal)
+	8. [UTF-8 Encoding](#utf-8-encoding)
+	9. [A Little Extra Security](#a-little-extra-security)
+3. [How to Contribute](#how-to-contribute)
+4. [License](#license)
+5. [Changelog](#changelog)
+
 
 ## How It Works
 If you're hosting a site on an Apache server, you can add any or all of the following snippets of code to the `.htaccess` file.
@@ -69,8 +86,8 @@ Proper MIME type for all files
 # ----------------------------------------------------------------------
 
 # JavaScript
-#   Normalize to standard type (it's sniffed in IE anyways)
-#   tools.ietf.org/html/rfc4329#section-7.2
+# Normalize to standard type (it's sniffed in IE anyways)
+# tools.ietf.org/html/rfc4329#section-7.2
 AddType application/javascript         js jsonp
 AddType application/json               json
 
@@ -85,8 +102,8 @@ AddType video/webm                     webm
 AddType video/x-flv                    flv
 
 # SVG
-#   Required for svg webfonts on iPad
-#   twitter.com/FontSquirrel/status/14855840545
+# Required for svg webfonts on iPad
+# twitter.com/FontSquirrel/status/14855840545
 AddType     image/svg+xml              svg svgz
 AddEncoding gzip                       svgz
 
@@ -168,7 +185,7 @@ A first-time visitor to your page may have to make several HTTP requests, but by
 # These are pretty far-future expires headers.
 # They assume you control versioning with filename-based cache busting
 # Additionally, consider that outdated proxies may miscache
-#   www.stevesouders.com/blog/2008/08/23/revving-filenames-dont-use-querystring/
+# www.stevesouders.com/blog/2008/08/23/revving-filenames-dont-use-querystring/
 
 # If you don't use filenames to version, lower the CSS and JS to something like
 # "access plus 1 week".
@@ -176,28 +193,28 @@ A first-time visitor to your page may have to make several HTTP requests, but by
 <IfModule mod_expires.c>
 	ExpiresActive on
 
-# Perhaps better to whitelist expires rules? Perhaps.
+	# Perhaps better to whitelist expires rules? Perhaps.
 	ExpiresDefault                          "access plus 1 month"
 
-# cache.appcache needs re-requests in FF 3.6 (thanks Remy ~Introducing HTML5)
+	# cache.appcache needs re-requests in FF 3.6 (thanks Remy ~Introducing HTML5)
 	ExpiresByType text/cache-manifest       "access plus 0 seconds"
 
-# Your document html
+	# Your document html
 	ExpiresByType text/html                 "access plus 0 seconds"
 
-# Data
+	# Data
 	ExpiresByType application/json          "access plus 0 seconds"
 	ExpiresByType application/xml           "access plus 0 seconds"
 	ExpiresByType text/xml                  "access plus 0 seconds"
 
-# Feed
+	# Feed
 	ExpiresByType application/atom+xml      "access plus 1 hour"
 	ExpiresByType application/rss+xml       "access plus 1 hour"
 
-# Favicon (cannot be renamed)
+	# Favicon (cannot be renamed)
 	ExpiresByType image/x-icon              "access plus 1 week"
 
-# Media: images, video, audio
+	# Media: images, video, audio
 	ExpiresByType audio/ogg                 "access plus 1 month"
 	ExpiresByType image/gif                 "access plus 1 month"
 	ExpiresByType image/jpeg                "access plus 1 month"
@@ -206,17 +223,17 @@ A first-time visitor to your page may have to make several HTTP requests, but by
 	ExpiresByType video/ogg                 "access plus 1 month"
 	ExpiresByType video/webm                "access plus 1 month"
 
-# HTC files  (css3pie)
+	# HTC files  (css3pie)
 	ExpiresByType text/x-component          "access plus 1 month"
 
-# Webfonts
+	# Webfonts
 	ExpiresByType application/vnd.ms-fontobject "access plus 1 month"
 	ExpiresByType application/x-font-ttf    "access plus 1 month"
 	ExpiresByType application/x-font-woff   "access plus 1 month"
 	ExpiresByType font/opentype             "access plus 1 month"
 	ExpiresByType image/svg+xml             "access plus 1 month"
 
-# CSS and JavaScript
+	# CSS and JavaScript
 	ExpiresByType application/javascript    "access plus 1 year"
 	ExpiresByType text/css                  "access plus 1 year"
 
@@ -264,7 +281,7 @@ Prevents modification of your code over 3G on some European providers.
 # This is the official 'bypass' suggested by O2 in the UK.
 
 <IfModule mod_headers.c>
-Header set Cache-Control "no-transform"
+	Header set Cache-Control "no-transform"
 </IfModule>
 ```
 
@@ -347,10 +364,17 @@ Prevent people from accessing stuff on your server that they shouldn't.
 ```
 
 
-## Changelog
-* v1.0 - February 9, 2013
-	* Initial release.
+## How To Contribute
+
+In lieu of a formal style guide, take care to maintain the existing coding style.
 
 
 ## License
-Licensed under the [MIT License](http://opensource.org/licenses/MIT).
+
+Licensed under the [MIT License](http://gomakethings.com/mit/).
+
+
+## Changelog
+
+* v1.0 - February 9, 2013
+	* Initial release.
