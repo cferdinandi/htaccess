@@ -15,7 +15,7 @@ If no `.htaccess` file exists, create one. If you're hosting a WordPress site, m
 ### CORS-Enabled Images
 Send CORS headers if browsers request them. Enabled by default for images.
 
-```htaccess
+```ApacheConf
 # ----------------------------------------------------------------------
 # CORS-enabled images (@crossorigin)
 # ----------------------------------------------------------------------
