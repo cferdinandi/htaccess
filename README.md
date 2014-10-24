@@ -1,6 +1,6 @@
 # .htaccess
 
-**Deprecated:** Grab the [latest version from HTML5 Boilerplate](https://github.com/h5bp/html5-boilerplate/blob/master/dist/.htaccess) instead.
+***Deprecated:*** *Grab the [latest version from HTML5 Boilerplate](https://github.com/h5bp/html5-boilerplate/blob/master/dist/.htaccess) instead.*
 
 In Apache HTTP servers, `.htaccess` (hypertext access) is the configuration file that allows for web server configuration.
 
